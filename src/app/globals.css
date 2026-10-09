@@ -24,3 +24,26 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+
+
+.price-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: bazardor-ticker 80s linear infinite;
+}
+
+@keyframes bazardor-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.price-ticker-track:hover {
+  animation-play-state: paused;
+}
