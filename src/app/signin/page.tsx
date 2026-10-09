@@ -12,6 +12,18 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  async function handleSocialSignIn(provider: "google" | "github") {
+    try {
+      await signIn.social({
+        provider,
+        callbackURL: "/",
+        errorCallbackURL: "/signin",
+      });
+    } catch {
+      toast.error(`${provider} দিয়ে Sign in করা যায়নি।`);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -56,7 +68,6 @@ export default function SignInPage() {
             তোমার অ্যাকাউন্টে Sign in করো
           </p>
         </div>
-
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label
@@ -104,6 +115,29 @@ export default function SignInPage() {
             {loading ? "Sign in হচ্ছে..." : "Sign In"}
           </button>
         </form>
+
+        <div className="my-5 flex items-center gap-3">
+          <div className="h-px flex-1 bg-gray-200" />
+          <span className="text-sm text-gray-500">অথবা Sign in করো</span>
+          <div className="h-px flex-1 bg-gray-200" />
+        </div>
+        <div className="space-y-3">
+          <button
+            type="button"
+            onClick={() => handleSocialSignIn("google")}
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 font-semibold text-gray-700 transition hover:bg-gray-50"
+          >
+            Google দিয়ে Sign In
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleSocialSignIn("github")}
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 font-semibold text-gray-700 transition hover:bg-gray-50"
+          >
+            GitHub দিয়ে Sign In
+          </button>
+        </div>
 
         <p className="mt-6 text-center text-sm text-gray-600">
           নতুন ব্যবহারকারী?{" "}
