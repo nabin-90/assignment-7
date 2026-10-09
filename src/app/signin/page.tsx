@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -24,14 +23,21 @@ export default function SignInPage() {
       });
 
       if (result.error) {
-        toast.error(
-          result.error.message || "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।"
-        );
+        toast.error(result.error.message || "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।");
         return;
       }
 
       toast.success("সফলভাবে Sign in হয়েছে!");
-      router.push("/");
+      const callbackURL = new URLSearchParams(window.location.search).get(
+        "callbackURL",
+      );
+
+      const destination =
+        callbackURL?.startsWith("/") && !callbackURL.startsWith("//")
+          ? callbackURL
+          : "/";
+
+      router.push(destination);
       router.refresh();
     } catch {
       toast.error("Sign in করা যায়নি। আবার চেষ্টা করো।");
@@ -45,9 +51,7 @@ export default function SignInPage() {
       <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-7 shadow-sm sm:p-9">
         <div className="mb-7 text-center">
           <p className="text-3xl">🛒</p>
-          <h1 className="mt-3 text-2xl font-bold text-gray-900">
-            বাজার দর
-          </h1>
+          <h1 className="mt-3 text-2xl font-bold text-gray-900">বাজার দর</h1>
           <p className="mt-2 text-sm text-gray-500">
             তোমার অ্যাকাউন্টে Sign in করো
           </p>

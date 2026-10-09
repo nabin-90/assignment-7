@@ -1,4 +1,6 @@
-
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/lib/api";
@@ -13,6 +15,15 @@ export default async function ProductDetailsPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect(`/signin?callbackURL=${encodeURIComponent(`/product/${slug}`)}`);
+  }
+
   const product = await getProductBySlug(slug);
 
   if (!product) {
@@ -120,9 +131,7 @@ export default async function ProductDetailsPage({
                     key={`${market.market}-${index}`}
                     className="border-t border-gray-100"
                   >
-                    <td className="px-5 py-4 font-semibold">
-                      {market.market}
-                    </td>
+                    <td className="px-5 py-4 font-semibold">{market.market}</td>
                     <td className="px-5 py-4 text-gray-600">
                       {market.division}
                     </td>
