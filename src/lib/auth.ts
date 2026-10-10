@@ -8,7 +8,12 @@ const db = client.db("bazar-dor");
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
-    trustedProviders: ["google", "github"],
+  },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google", "github"],
+    },
   },
   socialProviders: {
     google: {
