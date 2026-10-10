@@ -91,9 +91,6 @@ export default async function HomePage() {
           />
         </>
       )}
-
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }
@@ -101,7 +98,6 @@ export default async function HomePage() {
 import type { IProduct } from "@/lib/types";
 import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
-import Footer from "@/components/Footer";
 
 function ProductSection({
   title,
