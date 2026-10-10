@@ -120,8 +120,8 @@ export default function Navbar() {
                     unoptimized
                   />
                 ) : (
-                  <span className="hidden max-w-36 truncate text-sm font-semibold text-gray-800 sm:block">
-                    {userName.split(" ")[0]}
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-green-100 bg-green-100 text-sm font-bold text-green-800">
+                    {avatarLetter}
                   </span>
                 )}
 
