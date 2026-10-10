@@ -1,7 +1,6 @@
-
 import type { IProduct } from "./types";
 
-const API_URL = "https://api.abcz.workers.dev/api/bazardor";
+const API_URL = "https://openapi.programming-hero.com/api/bazardor";
 
 export async function getProducts(): Promise<IProduct[]> {
   const response = await fetch(`${API_URL}/products`);
@@ -13,9 +12,7 @@ export async function getProducts(): Promise<IProduct[]> {
   return response.json();
 }
 
-export async function getProductBySlug(
-  slug: string,
-): Promise<IProduct | null> {
+export async function getProductBySlug(slug: string): Promise<IProduct | null> {
   const products = await getProducts();
 
   return products.find((product) => product.slug === slug) ?? null;
