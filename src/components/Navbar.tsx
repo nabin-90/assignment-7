@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 
 const categories = [
-  { name: "সব পণ্য", slug: "", icon: "🛍️" },
   { name: "চাল", slug: "chal", icon: "🍚" },
   { name: "ডাল", slug: "dal", icon: "🫘" },
   { name: "তেল", slug: "tel", icon: "🛢️" },

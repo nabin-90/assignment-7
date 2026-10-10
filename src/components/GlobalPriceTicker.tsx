@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -14,7 +13,7 @@ export default function GlobalPriceTicker() {
     async function loadProducts() {
       try {
         const response = await fetch(
-          "https://api.api-store.workers.dev/api/bazardor/products",
+          "https://api.abcz.workers.dev/api/bazardor/products",
         );
 
         if (!response.ok) return;
