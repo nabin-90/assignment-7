@@ -85,7 +85,7 @@ export default function Navbar() {
 
           {/* Title and date */}
           <span className="flex flex-col justify-center gap-0.5">
-            <span className="text-[22px] leading-tight font-extrabold tracking-tight">
+            <span className="text-[22px] leading-tight font-extrabold tracking-tight text-black">
               বাজার দর
             </span>
 
