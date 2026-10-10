@@ -24,7 +24,7 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#f8faf5] text-[#183b2b]">
-      <div className="min-h-screen bg-[#F1F6F1]">
+      <div className="bg-[#F1F6F1]">
         {/* Hero */}
         <section className="mx-auto max-w-7xl px-5 py-6 sm:py-8">
           <div className="grid min-h-[300px] items-center gap-6 overflow-hidden rounded-[28px] border border-[#dfe8df] bg-[#f9fcf9] px-5 py-8 sm:px-8 md:grid-cols-[1.5fr_0.7fr] md:px-12 md:py-10 lg:min-h-[335px] lg:px-14">
