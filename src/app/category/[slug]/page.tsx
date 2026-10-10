@@ -31,7 +31,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const categoryName = products[0].categoryNameBn;
 
   return (
-    <main className="min-h-screen bg-[#f7f9f5] px-4 py-10 text-gray-900 sm:px-6 lg:px-10">
+    <main className="min-h-screen bg-[#F1F6F1] px-4 py-6 text-[#202820] sm:px-6 sm:py-8 lg:px-4">
       {" "}
       <div className="mx-auto max-w-7xl">
         {" "}
@@ -41,17 +41,22 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         >
           ← হোম পেজে ফিরে যান{" "}
         </Link>
-        <div className="mb-8">
-          <p className="mb-2 text-sm font-semibold text-green-700">
-            পণ্যের ক্যাটাগরি
-          </p>
+        <div className="mb-6 rounded-[18px] border border-[#DFE7DF] bg-[#FAFCFA] px-5 py-5 sm:px-6">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F0F5F0] text-3xl">
+              {products[0].categoryIcon}
+            </div>
 
-          <h1 className="text-3xl font-bold sm:text-4xl">{categoryName}</h1>
+            <div>
+              <h1 className="text-2xl font-extrabold text-[#202820] sm:text-3xl">
+                {categoryName}
+              </h1>
 
-          <p className="mt-2 text-gray-600">
-            এই ক্যাটাগরির {formatPrice(products.length)}টি পণ্যের বর্তমান
-            বাজারদর দেখুন।
-          </p>
+              <p className="mt-1 text-sm text-[#667067]">
+                {formatPrice(products.length)}টি পণ্যের আজকের দাম ও পরিবর্তন
+              </p>
+            </div>
+          </div>
         </div>
         <CategoryProductGrid products={products} />
       </div>

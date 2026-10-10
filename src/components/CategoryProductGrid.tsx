@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { IProduct } from "@/lib/types";
 
 type SortOption = "default" | "low-to-high" | "high-to-low";
@@ -13,6 +12,19 @@ interface CategoryProductGridProps {
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("bn-BD").format(price);
+}
+
+function formatUnit(unit: string): string {
+  const units: Record<string, string> = {
+    kg: "কেজি",
+    gram: "গ্রাম",
+    liter: "লিটার",
+    piece: "টি",
+    dozen: "ডজন",
+    egg: "টি",
+  };
+
+  return units[unit.toLowerCase()] || unit;
 }
 
 export default function CategoryProductGrid({
@@ -33,19 +45,16 @@ export default function CategoryProductGrid({
   }, [products, sort]);
 
   return (
-    <section>
-      {/* Product count and sorting */}{" "}
-      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        {" "}
-        <p className="text-sm text-gray-600">
-          মোট {formatPrice(products.length)}টি পণ্য{" "}
-        </p>
-        <label className="flex items-center gap-3 text-sm font-medium text-gray-700">
-          দাম অনুযায়ী সাজান
+    <section className="text-[#202820]">
+      {/* Sorting bar */}
+      <div className="mb-4 flex min-h-[72px] flex-col gap-3 rounded-[18px] border border-[#DFE7DF] bg-[#FAFCFA] px-4 py-4 sm:flex-row sm:items-center sm:justify-end sm:px-6">
+        <label className="flex items-center justify-end gap-3 text-sm text-[#667067]">
+          <span>সাজান</span>
+
           <select
             value={sort}
             onChange={(event) => setSort(event.target.value as SortOption)}
-            className="rounded-lg border border-gray-300 bg-white px-3 py-2 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+            className="rounded-[9px] border border-[#CDD7CD] bg-[#FAFCFA] px-3 py-2 text-sm text-[#303830] outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
           >
             <option value="default">ডিফল্ট</option>
             <option value="low-to-high">দাম: কম থেকে বেশি</option>
@@ -53,81 +62,76 @@ export default function CategoryProductGrid({
           </select>
         </label>
       </div>
+
+      {/* Product count */}
+      <p className="mb-4 text-sm text-[#667067]">
+        মোট {formatPrice(products.length)}টি পণ্য দেখানো হচ্ছে
+      </p>
+
       {/* Product cards */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {sortedProducts.map((product) => (
-          <Link
-            key={product.id}
-            href={`/product/${product.slug}`}
-            className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-green-300 hover:shadow-lg"
-          >
-            {/* Product image or emoji */}
-            <div className="flex h-44 items-center justify-center overflow-hidden bg-gray-100 p-4">
-              {product.image?.startsWith("http") ? (
-                <Image
-                  src={product.image}
-                  alt={product.nameBn}
-                  width={180}
-                  height={140}
-                  className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
-                />
-              ) : (
-                <span
-                  className="text-5xl"
-                  role="img"
-                  aria-label={product.nameBn}
-                >
-                  {product.image || product.categoryIcon}
-                </span>
-              )}
-            </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {sortedProducts.map((product) => {
+          const isUp = product.change.dir === "up";
+          const isDown = product.change.dir === "down";
 
-            {/* Product information */}
-            <div className="p-5">
-              <p className="mb-2 text-sm text-gray-500">
-                {product.categoryNameBn}
-              </p>
-
-              <h2 className="text-lg font-bold text-gray-900 transition group-hover:text-green-700">
-                {product.nameBn}
-              </h2>
-
-              <div className="mt-4 flex items-end justify-between gap-2">
-                <div>
-                  <p className="text-sm text-gray-500">বর্তমান দাম</p>
-
-                  <p className="text-xl font-bold text-green-700">
-                    ৳{formatPrice(product.today)}
-                    <span className="ml-1 text-sm font-normal text-gray-500">
-                      / {product.unit}
+          return (
+            <Link
+              key={product.id}
+              href={`/product/${product.slug}`}
+              className="group flex min-h-[150px] flex-col justify-between rounded-[18px] border border-[#DFE7DF] bg-[#FAFCFA] p-4 transition duration-200 hover:border-[#B8D8C0] hover:shadow-sm sm:p-[17px]"
+            >
+              {/* Product name and icon */}
+              <div className="flex items-center gap-3">
+                <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-[15px] bg-[#F0F5F0] text-[30px]">
+                  {product.image?.startsWith("http") ? (
+                    <span role="img" aria-label={product.nameBn}>
+                      {product.categoryIcon}
                     </span>
+                  ) : (
+                    <span role="img" aria-label={product.nameBn}>
+                      {product.image || product.categoryIcon}
+                    </span>
+                  )}
+                </div>
+
+                <div className="min-w-0">
+                  <h2 className="text-base leading-6 font-bold text-[#202820] transition group-hover:text-green-700 sm:text-[17px]">
+                    {product.nameBn}
+                  </h2>
+
+                  <p className="mt-0.5 text-sm text-[#667067]">
+                    প্রতি {formatUnit(product.unit)}
+                  </p>
+                </div>
+              </div>
+
+              {/* Price and change */}
+              <div className="mt-4 flex items-end justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="text-[13px] text-[#667067]">আজকের দাম</p>
+
+                  <p className="mt-0.5 text-xl leading-7 font-extrabold text-[#202820]">
+                    {formatPrice(product.today)}
+                    <span className="ml-1 text-sm font-medium">টাকা</span>
                   </p>
                 </div>
 
                 <span
-                  className={`shrink-0 text-sm font-semibold ${
-                    product.change.dir === "up"
-                      ? "text-red-600"
-                      : product.change.dir === "down"
-                        ? "text-green-600"
-                        : "text-gray-500"
+                  className={`mb-0.5 shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${
+                    isUp
+                      ? "bg-[#F0F5F0] text-red-600"
+                      : isDown
+                        ? "bg-[#F0F5F0] text-green-600"
+                        : "bg-[#F0F5F0] text-[#303830]"
                   }`}
                 >
-                  {product.change.dir === "up"
-                    ? "▲"
-                    : product.change.dir === "down"
-                      ? "▼"
-                      : "—"}{" "}
+                  {isUp ? "▲" : isDown ? "▼" : "—"}{" "}
                   {formatPrice(Math.abs(product.change.pct))}%
                 </span>
               </div>
-
-              <p className="mt-4 border-t border-gray-100 pt-3 text-sm font-medium text-green-700">
-                বিস্তারিত বাজারদর দেখুন →
-              </p>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
