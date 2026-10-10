@@ -6,6 +6,11 @@
 
 BazarDor provides a simple and responsive platform to browse essential products, check current prices, compare price changes, and explore market-wise pricing information. The application also includes user authentication and profile management.
 
+## 🌐 Live Demo & Repository
+
+- **Live Demo:** https://bazardor-self.vercel.app/
+- **GitHub Repository:** https://github.com/nabin-90/assignment-7
+
 ## 🛠️ Technologies Used
 
 - Next.js (App Router)
@@ -21,7 +26,7 @@ BazarDor provides a simple and responsive platform to browse essential products,
 ## ✨ Features
 
 1. **Homepage:** Browse essential products and explore current market prices.
-2. **Category Filtering:** Browse products by category, including rice, lentils, oil, vegetables, fish, meat, eggs and milk, and spices.
+2. **Category Filtering:** Browse products by category, including rice, lentils, oil, vegetables, fish, meat, eggs, and spices.
 3. **Product Details:** View product information and market-wise price ranges.
 4. **Price Ticker:** Follow a continuously moving ticker showing product prices and price changes.
 5. **Price Comparison:** Explore minimum, maximum, and average prices across markets.
@@ -31,8 +36,8 @@ BazarDor provides a simple and responsive platform to browse essential products,
 9. **Protected Product Details:** Sign in to access detailed product pricing.
 10. **User Profile:** View account information and update profile details.
 11. **Responsive Design:** Browse on desktop, tablet, and mobile devices.
-12. **Loading Skeleton:** Display loading placeholders while page content loads.
-13. **Error Handling:** Display an error page with a retry option when supported by the page.
+12. **Loading Skeletons:** Display loading placeholders while page content loads.
+13. **Error Handling:** Display an error page with a retry option where supported.
 14. **Custom 404 Page:** Show a helpful not-found page with a link back to the homepage.
 15. **Bengali Number Formatting:** Display prices using Bengali numerals.
 
@@ -59,6 +64,8 @@ BazarDor provides a simple and responsive platform to browse essential products,
    cd bazardor
    ```
 
+   If the cloned folder has a different name, navigate to that folder instead.
+
 3. Install dependencies:
 
    ```bash
@@ -80,7 +87,7 @@ BazarDor provides a simple and responsive platform to browse essential products,
    GITHUB_CLIENT_SECRET=your_github_client_secret
    ```
 
-   Replace the example values with your actual credentials. **Never commit your `.env` file or publish your secrets.**
+   Replace the example values with your actual credentials. Never commit your `.env` file or publish your secrets.
 
 5. Start the development server:
 
@@ -88,7 +95,7 @@ BazarDor provides a simple and responsive platform to browse essential products,
    npm run dev
    ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open http://localhost:3000 in your browser.
 
 ### Production Build
 
@@ -105,7 +112,7 @@ BazarDor uses a REST API to retrieve product and market price information.
 - **All Products:** `/products`
 - **Products by Category:** `/products?category=chal`
 - **Product Details:** `/products/:id`
-- **Categories:** `/categories`
+- **All Categories:** `/categories`
 
 ## 📁 Project Structure
 
@@ -136,12 +143,11 @@ src/
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components/
-├── lib/
-│   ├── api.ts
-│   ├── auth.ts
-│   ├── auth-client.ts
-│   └── types.ts
-└── ...
+└── lib/
+    ├── api.ts
+    ├── auth.ts
+    ├── auth-client.ts
+    └── types.ts
 ```
 
 ## 🎯 Project Goal
