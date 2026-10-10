@@ -24,37 +24,47 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#f8faf5] text-[#183b2b]">
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:grid-cols-2 md:items-center md:py-20">
-        <div>
-          <p className="mb-4 font-semibold text-green-700">
-            আপনার বাজার, আপনার হাতেই
-          </p>
-
-          <h1 className="text-4xl leading-tight font-extrabold tracking-tight md:text-6xl">
-            প্রতিদিনের বাজারদর,
-            <span className="block text-green-700">জানুন সবার আগে।</span>
-          </h1>
-
-          <p className="mt-5 max-w-xl leading-8 text-gray-600">
-            চাল, ডালসহ নিত্যপ্রয়োজনীয় পণ্যের দাম ও বিভিন্ন বাজারের মূল্য এক
-            জায়গায় দেখুন।
-          </p>
-
-          <a
-            href="#সব-পণ্য"
-            className="mt-7 inline-block rounded-xl bg-green-700 px-6 py-3 font-bold text-white transition hover:bg-green-800"
-          >
-            পণ্যের তালিকা দেখুন ↓
-          </a>
-        </div>
-
-        <div className="flex min-h-64 items-center justify-center rounded-3xl bg-green-100 p-8 text-center">
-          <div>
-            <span className="text-8xl">🛍️</span>
-            <p className="mt-4 text-lg font-bold">সঠিক দামে সচেতন বাজার</p>
-            <p className="mt-2 text-sm text-gray-600">
-              প্রতিদিনের প্রয়োজনীয় পণ্যের তথ্য
+      <section className="mx-auto max-w-7xl px-5 py-6 sm:py-8">
+        <div className="grid min-h-[300px] items-center gap-6 overflow-hidden rounded-[28px] border border-[#dfe8df] bg-[#f9fcf9] px-5 py-8 sm:px-8 md:grid-cols-[1.5fr_0.7fr] md:px-12 md:py-10 lg:min-h-[335px] lg:px-14">
+          {/* Left content */}
+          <div className="relative z-10">
+            <p className="mb-4 inline-flex rounded-full bg-[#e2f3e8] px-4 py-2 text-sm font-semibold text-green-700">
+              {new Intl.DateTimeFormat("bn-BD", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                timeZone: "Asia/Dhaka",
+              }).format(new Date())}
             </p>
+
+            <h1 className="max-w-3xl text-3xl leading-tight font-extrabold tracking-tight text-[#202b23] sm:text-4xl lg:text-5xl">
+              আজকের বাজারের দাম এক নজরে
+            </h1>
+
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base sm:leading-8">
+              চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
+              বিস্তার, গড়, সর্বনিম্ন-সর্বোচ্চ এবং দামের পরিবর্তন এক জায়গায়।
+            </p>
+
+            <a
+              href="#সব-পণ্য"
+              className="mt-7 inline-flex items-center rounded-xl bg-green-700 px-7 py-3 font-bold text-white shadow-md transition hover:bg-green-800"
+            >
+              সব পণ্য দেখুন
+            </a>
+          </div>
+
+          {/* Hero image */}
+          <div className="flex items-center justify-center md:justify-end">
+            <Image
+              src="/assets/images/bazar-hero.png"
+              alt="বাজারের তাজা পণ্য"
+              width={400}
+              height={300}
+              priority
+              className="h-auto max-h-[240px] w-full max-w-[300px] object-contain sm:max-h-[270px] sm:max-w-[340px] lg:max-h-[290px]"
+            />
           </div>
         </div>
       </section>
@@ -100,6 +110,7 @@ export default async function HomePage() {
 }
 
 import type { IProduct } from "@/lib/types";
+import Image from "next/image";
 
 function ProductSection({
   title,

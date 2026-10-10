@@ -32,7 +32,7 @@ body {
 .price-ticker-track {
   display: flex;
   width: max-content;
-  animation: bazardor-ticker 80s linear infinite;
+  animation: bazardor-ticker 60s linear infinite;
 }
 
 @keyframes bazardor-ticker {
