@@ -8,8 +8,8 @@ BazarDor provides a simple and responsive platform to browse essential products,
 
 ## 🌐 Live Demo & Repository
 
-- **Live Demo:** https://bazardor-self.vercel.app/
-- **GitHub Repository:** https://github.com/nabin-90/assignment-7
+- **Live Demo:** [https://bazardor-self.vercel.app/](https://bazardor-self.vercel.app/)
+- **GitHub Repository:** [https://github.com/nabin-90/assignment-7](https://github.com/nabin-90/assignment-7)
 
 ## 🛠️ Technologies Used
 
@@ -37,7 +37,7 @@ BazarDor provides a simple and responsive platform to browse essential products,
 10. **User Profile:** View account information and update profile details.
 11. **Responsive Design:** Browse on desktop, tablet, and mobile devices.
 12. **Loading Skeletons:** Display loading placeholders while page content loads.
-13. **Error Handling:** Display an error page with a retry option where supported.
+13. **Error Handling:** Display error states with retry options where supported.
 14. **Custom 404 Page:** Show a helpful not-found page with a link back to the homepage.
 15. **Bengali Number Formatting:** Display prices using Bengali numerals.
 
@@ -95,7 +95,7 @@ BazarDor provides a simple and responsive platform to browse essential products,
    npm run dev
    ```
 
-6. Open http://localhost:3000 in your browser.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Production Build
 
@@ -106,9 +106,9 @@ npm run start
 
 ## 🌐 API
 
-BazarDor uses a REST API to retrieve product and market price information.
+BazarDor uses the Programming Hero REST API to retrieve product and market price information.
 
-- **API Base URL:** https://api.api-store.workers.dev/api/bazardor
+- **API Base URL:** [https://openapi.programming-hero.com/api/bazardor](https://openapi.programming-hero.com/api/bazardor)
 - **All Products:** `/products`
 - **Products by Category:** `/products?category=chal`
 - **Product Details:** `/products/:id`
