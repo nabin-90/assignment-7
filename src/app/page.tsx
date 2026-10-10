@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { getProducts } from "@/lib/api";
 
@@ -25,9 +24,6 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#f8faf5] text-[#183b2b]">
-      <Navbar/>
-      <PriceTicker products={products} />
-
       <section className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:grid-cols-2 md:items-center md:py-20">
         <div>
           <p className="mb-4 font-semibold text-green-700">
@@ -40,8 +36,8 @@ export default async function HomePage() {
           </h1>
 
           <p className="mt-5 max-w-xl leading-8 text-gray-600">
-            চাল, ডালসহ নিত্যপ্রয়োজনীয় পণ্যের দাম ও বিভিন্ন বাজারের মূল্য
-            এক জায়গায় দেখুন।
+            চাল, ডালসহ নিত্যপ্রয়োজনীয় পণ্যের দাম ও বিভিন্ন বাজারের মূল্য এক
+            জায়গায় দেখুন।
           </p>
 
           <a
@@ -55,9 +51,7 @@ export default async function HomePage() {
         <div className="flex min-h-64 items-center justify-center rounded-3xl bg-green-100 p-8 text-center">
           <div>
             <span className="text-8xl">🛍️</span>
-            <p className="mt-4 text-lg font-bold">
-              সঠিক দামে সচেতন বাজার
-            </p>
+            <p className="mt-4 text-lg font-bold">সঠিক দামে সচেতন বাজার</p>
             <p className="mt-2 text-sm text-gray-600">
               প্রতিদিনের প্রয়োজনীয় পণ্যের তথ্য
             </p>
@@ -67,9 +61,7 @@ export default async function HomePage() {
 
       {products.length === 0 ? (
         <section className="mx-auto max-w-7xl px-5 py-16 text-center">
-          <p className="text-lg font-semibold">
-            পণ্যের তথ্য লোড করা যায়নি।
-          </p>
+          <p className="text-lg font-semibold">পণ্যের তথ্য লোড করা যায়নি।</p>
           <p className="mt-2 text-sm text-gray-500">
             ইন্টারনেট সংযোগ ও API ঠিক আছে কি না যাচাই করো।
           </p>
@@ -100,9 +92,7 @@ export default async function HomePage() {
       <footer className="mt-16 border-t border-green-100 bg-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-7 text-sm text-gray-500 md:flex-row md:items-center md:justify-between">
           <p>বাজার দর — প্রয়োজনীয় পণ্যের দাম এক নজরে।</p>
-          <p>
-            সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
-          </p>
+          <p>সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।</p>
         </div>
       </footer>
     </main>
@@ -110,8 +100,6 @@ export default async function HomePage() {
 }
 
 import type { IProduct } from "@/lib/types";
-import Navbar from "@/components/Navbar";
-import PriceTicker from "@/components/PriceTicker";
 
 function ProductSection({
   title,

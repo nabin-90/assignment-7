@@ -8,15 +8,15 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 
 const categories = [
-  { name: "সব পণ্য", slug: "" },
-  { name: "চাল", slug: "chal" },
-  { name: "ডাল", slug: "dal" },
-  { name: "তেল", slug: "tel" },
-  { name: "সবজি", slug: "sobji" },
-  { name: "মাছ", slug: "mach" },
-  { name: "মাংস", slug: "mangsho" },
-  { name: "ডিম-দুধ", slug: "dim-dui" },
-  { name: "মসলা", slug: "mosla" },
+  { name: "সব পণ্য", slug: "", icon: "🛍️" },
+  { name: "চাল", slug: "chal", icon: "🍚" },
+  { name: "ডাল", slug: "dal", icon: "🫘" },
+  { name: "তেল", slug: "tel", icon: "🛢️" },
+  { name: "সবজি", slug: "sobji", icon: "🥬" },
+  { name: "মাছ", slug: "mach", icon: "🐟" },
+  { name: "মাংস", slug: "mangsho", icon: "🍗" },
+  { name: "ডিম-দুধ", slug: "dim-dui", icon: "🥛" },
+  { name: "মসলা", slug: "mosla", icon: "🌶️" },
 ];
 
 export default function Navbar() {
@@ -72,7 +72,7 @@ export default function Navbar() {
   const avatarLetter = userName.charAt(0).toUpperCase();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-green-100 bg-white/95 shadow-sm backdrop-blur">
+    <header className="relative z-30 border-b border-green-100 bg-white/95 shadow-sm backdrop-blur">
       {/* Logo and authentication */}
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
         <Link
@@ -100,7 +100,7 @@ export default function Navbar() {
           {isPending ? (
             <div className="h-10 w-28 animate-pulse rounded-xl bg-gray-100" />
           ) : user ? (
-            <div className="relative">
+            <div className="relative z-[70]">
               {/* User dropdown trigger */}
               <button
                 type="button"
@@ -151,13 +151,13 @@ export default function Navbar() {
                   <button
                     type="button"
                     aria-label="Close user menu"
-                    className="fixed inset-0 z-40 cursor-default"
+                    className="fixed inset-0 z-[101] cursor-default"
                     onClick={() => setDropdownOpen(false)}
                   />
 
                   <div
                     role="menu"
-                    className="absolute right-0 z-50 mt-3 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl"
+                    className="absolute right-0 z-[102] mt-3 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl"
                   >
                     {/* User information */}
                     <div className="border-b border-gray-100 bg-gray-50 px-4 py-4">
@@ -237,10 +237,13 @@ export default function Navbar() {
         </div>
       </div>
 
+      <div className="border-t border-gray-100" />
+
       {/* Category navigation */}
+
       <nav
         aria-label="পণ্যের ক্যাটাগরি"
-        className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 pb-3"
+        className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-2"
       >
         {categories.map((category) => {
           const href = category.slug ? `/category/${category.slug}` : "/";
@@ -254,13 +257,14 @@ export default function Navbar() {
               key={category.slug || "all"}
               href={href}
               aria-current={isActive ? "page" : undefined}
-              className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold transition ${
                 isActive
                   ? "bg-green-700 text-white shadow-sm"
-                  : "text-gray-600 hover:bg-green-100 hover:text-green-800"
+                  : "text-gray-700 hover:bg-green-50 hover:text-green-800"
               }`}
             >
-              {category.name}
+              <span aria-hidden="true">{category.icon}</span>
+              <span>{category.name}</span>
             </Link>
           );
         })}
